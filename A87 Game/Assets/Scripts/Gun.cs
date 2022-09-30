@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerShoot.shootInput += Shoot;
+       // PlayerShoot.shootInput += Shoot;
     }
 
     public void Shoot()
