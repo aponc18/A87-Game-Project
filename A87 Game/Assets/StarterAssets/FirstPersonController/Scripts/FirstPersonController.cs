@@ -56,6 +56,7 @@ namespace StarterAssets
 
 		// player
 		private float _speed;
+		private float _animationBlend;
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
@@ -64,15 +65,25 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
-	
+		// animation IDs
+		private int _animIDSpeed;
+		private int _animIDGrounded;
+		private int _animIDJump;
+		private int _animIDFreeFall;
+		private int _animIDMotionSpeed;
+
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		private PlayerInput _playerInput;
 #endif
+		private Animator _animator;
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
 		private const float _threshold = 0.01f;
+
+		private bool _hasAnimator;
 
 		private bool IsCurrentDeviceMouse
 		{
@@ -120,6 +131,15 @@ namespace StarterAssets
 		private void LateUpdate()
 		{
 			CameraRotation();
+		}
+
+		private void AssignAnimationIDs()
+		{
+			_animIDSpeed = Animator.StringToHash("Speed");
+			_animIDGrounded = Animator.StringToHash("Grounded");
+			_animIDJump = Animator.StringToHash("Jump");
+			_animIDFreeFall = Animator.StringToHash("FreeFall");
+			_animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
 		}
 
 		private void GroundedCheck()
@@ -196,6 +216,13 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+			// update animator if using character Possible error
+			if (_hasAnimator)
+			{
+				_animator.SetFloat(_animIDSpeed, _animationBlend);
+				_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+			}
 		}
 
 		private void JumpAndGravity()
