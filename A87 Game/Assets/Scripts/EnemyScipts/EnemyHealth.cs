@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
     private int currentHealth;
 
-    private void start() 
+    private void Start() 
     {
         currentHealth = enemyStats.maxHealth;
     }
