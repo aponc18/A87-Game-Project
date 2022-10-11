@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour, IDamagable
 {
-    private float health = 1f;
+    private int health = 1;
 
-    public void Damage(float damage) 
+    public void Damage(int damage) 
     {
         health -= damage;
         if (health <= 0)

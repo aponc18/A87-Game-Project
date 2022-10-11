@@ -47,8 +47,8 @@ public class Gun : MonoBehaviour
                 if (Physics.Raycast(muzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     //Debug.Log(hitInfo.transform.name);
-                    IDamagable damageable = hitInfo.transform.GetComponent<IDamagable>();
-                    damageable?.Damage(gunData.damage);
+                    //IDamagable damageable = hitInfo.transform.GetComponent<IDamagable>();
+                    //damageable?.Damage(gunData.damage);
                 }
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
