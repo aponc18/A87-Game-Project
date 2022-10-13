@@ -15,6 +15,8 @@ namespace CreatingCharacters.Abilities
 
         private int jumpCounter = 0;
 
+        public float speedBoost = 8f;
+
         protected override void Update() 
         {
             if (!isClimbing) 
@@ -22,12 +24,23 @@ namespace CreatingCharacters.Abilities
                 base.Update();
             }
             
-             
 
             if (charContrl.isGrounded) 
             {
                 jumpCounter = 0;
+
+                
+
             }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+             {
+                 speed += speedBoost;
+             }
+             else if (Input.GetKeyUp(KeyCode.LeftShift)) 
+             {
+                 speed -= speedBoost;
+             }
         }
 
         protected override void Jump() 

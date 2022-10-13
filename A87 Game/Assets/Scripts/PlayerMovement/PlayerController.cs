@@ -27,7 +27,7 @@ namespace CreatingCharacters.Player
         protected float activeSpeed;
 
         public bool isSprinting = false;
-        public float sprintingMultiplier;
+        public float sprintingMultiplier = 2.1f;
 
         protected virtual void Awake() 
         {
@@ -56,6 +56,14 @@ namespace CreatingCharacters.Player
             float hAxis = Input.GetAxisRaw("Horizontal");
             float vAxis = Input.GetAxisRaw("Vertical");
 
+            /*while (Input.GetKey(KeyCode.LeftShift))
+            {
+                isSprinting = true;
+                
+                activeSpeed = speed * sprintingMultiplier;
+            }*/
+
+            //isSprinting = false;
             activeSpeed = speed;
 
             Vector3 movementInput = new Vector3(hAxis, 0f, vAxis).normalized;
