@@ -38,7 +38,7 @@ namespace CreatingCharacters.Abilities
                 }
                 else if (jumpCounter == 1) 
                 {
-                    rb.velocity = Vector3.up * jumpForce * 1.5f;
+                    rb.velocity = Vector3.up * jumpForce * 1.8f;
                     jumpCounter = 2;
                 }
             }
