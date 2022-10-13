@@ -7,13 +7,24 @@ namespace CreatingCharacters.Abilities
 {
     public class DashController : PlayerController
     {
+        [SerializeField] private float edgeForce;
+        [SerializeField] private float climbSpeed;
+        [SerializeField] private float wallRaycast;
+
+        private bool isClimbing = false;
+
         private int jumpCounter = 0;
 
         protected override void Update() 
         {
-            base.Update();
+            if (!isClimbing) 
+            {
+                base.Update();
+            }
+            
+             
 
-            if (IsGrounded()) 
+            if (charContrl.isGrounded) 
             {
                 jumpCounter = 0;
             }
@@ -23,11 +34,22 @@ namespace CreatingCharacters.Abilities
         {
             if (Input.GetKeyDown(KeyCode.Space)) 
             {
-               
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, wallRaycast)) 
+                {
+                    if (hit.collider.GetComponent<Climbable>() != null) 
+                    {
+                        StartCoroutine(Climb(hit.collider));
+                    }
+                }
+
                 if (jumpCounter == 0)
                 {
-                    rb.velocity = Vector3.up * jumpForce;
-                    if (IsGrounded())
+                    ResetImpactY();
+                    AddForce(Vector3.up, jumpForce);
+                    //rb.velocity = Vector3.up * jumpForce;
+
+                    if (charContrl.isGrounded)
                     {
                         jumpCounter = 1;
                     }
@@ -38,11 +60,44 @@ namespace CreatingCharacters.Abilities
                 }
                 else if (jumpCounter == 1) 
                 {
-                    rb.velocity = Vector3.up * jumpForce * 1.8f;
+                    ResetImpactY();
+                    AddForce(Vector3.up, jumpForce*1.8f);
+                    //rb.velocity = Vector3.up * jumpForce * 1.8f;
                     jumpCounter = 2;
                 }
             }
             
+        }
+
+        private IEnumerator Climb(Collider climbableCollider) 
+        {
+            isClimbing = true;
+
+            while (Input.GetKey(KeyCode.Space)) 
+            {
+                RaycastHit hit;
+                Debug.DrawRay(transform.position, transform.forward * wallRaycast, Color.blue, 0.5f);
+                if (Physics.Raycast(transform.position, transform.forward, out hit, wallRaycast))
+                {
+                    if (hit.collider == climbableCollider)
+                    {
+                        charContrl.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
+                        yield return null;
+                    }
+                    else 
+                    {
+                        break;
+                    }
+                }
+                else 
+                {
+                    break;
+                }
+            }
+
+            ResetImpactY();
+            AddForce(Vector3.up, edgeForce);
+            isClimbing = false;
         }
     }
 }

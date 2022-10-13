@@ -1,19 +1,21 @@
+using CreatingCharacters.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace CreatingCharacters.Abilities
 {
+    [RequireComponent(typeof(PlayerController))]
     public class Dash : Ability
     {
         [SerializeField] private float dashForce;
         [SerializeField] private float dashDuration;
 
-        private Rigidbody rb;
+        private PlayerController playerMovementCtrl;
 
         private void Awake() 
         {
-            rb = GetComponent<Rigidbody>();
+            playerMovementCtrl = GetComponent<PlayerController>();
         }
 
         private void Update()
@@ -26,11 +28,11 @@ namespace CreatingCharacters.Abilities
 
         public override IEnumerator Cast() 
         {
-            rb.AddForce(Camera.main.transform.forward * dashForce, ForceMode.Impulse);
+            playerMovementCtrl.AddForce(Camera.main.transform.forward, dashForce);
 
             yield return new WaitForSeconds(dashDuration);
 
-            rb.velocity = Vector3.zero;
+            playerMovementCtrl.ResetImpact();
         }
     }
 }

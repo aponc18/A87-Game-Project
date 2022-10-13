@@ -4,33 +4,52 @@ using UnityEngine;
 
 namespace CreatingCharacters.Player
 {
+    [RequireComponent(typeof(CharacterController))]
+
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] protected float speed;
-        [SerializeField] protected float jumpForce;
+        [SerializeField] protected float speed = 5f;
+        [SerializeField] protected float jumpForce = 4f;
+        [SerializeField] protected float mass = 1f;
+        [SerializeField] protected float damping = 5f;
+
         [SerializeField] private float jumpraycastDistance;
 
-        protected Rigidbody rb;
-        private float activeSpeed;
+        protected CharacterController charContrl;
+
+        protected float velocityY;
+        protected Vector3 currentImpact;
+        protected float distanceToFeet;
+
+        private readonly float gravity = Physics.gravity.y;
+
+        //protected Rigidbody rb;
+        protected float activeSpeed;
 
         public bool isSprinting = false;
         public float sprintingMultiplier;
 
+        protected virtual void Awake() 
+        {
+            charContrl = GetComponent<CharacterController>();
+        }
+
         private void Start()
         {
-            rb = GetComponent<Rigidbody>();
+            //rb = GetComponent<Rigidbody>();
         }
 
         protected virtual void Update()
         {
+            Move();
             Jump();
             //Sprint();
         }
 
-        protected virtual void FixedUpdate()
+        /*protected virtual void FixedUpdate()
         {
             Move();
-        }
+        }*/
 
         protected virtual void Move()
         {
@@ -39,20 +58,51 @@ namespace CreatingCharacters.Player
 
             activeSpeed = speed;
 
-            Vector3 movement = new Vector3(hAxis, 0, vAxis) * activeSpeed * Time.fixedDeltaTime;
+            Vector3 movementInput = new Vector3(hAxis, 0f, vAxis).normalized;
+            movementInput = transform.TransformDirection(movementInput);
 
-            Vector3 newPosition = rb.position + rb.transform.TransformDirection(movement);
+            if (charContrl.isGrounded && velocityY < 0f) 
+            {
+                velocityY = 0f;
+            }
 
-            rb.MovePosition(newPosition);
+            velocityY += gravity * Time.deltaTime;
+
+            Vector3 velocity = movementInput * activeSpeed + Vector3.up * velocityY;
+
+            if (currentImpact.magnitude > 0.2f) 
+            {
+                velocity += currentImpact;
+            }
+
+            charContrl.Move(velocity * Time.deltaTime);
+            currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
+        }
+
+        public void ResetImpact() 
+        {
+            currentImpact = Vector3.zero;
+            velocityY = 0f;
+        }
+
+        protected void ResetImpactY() 
+        {
+            currentImpact.y = 0f;
+            velocityY = 0f;
+        }
+
+        protected void ResetImpactX()
+        {
+            currentImpact.x = 0f;
         }
 
         protected virtual void Jump()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (IsGrounded())
+                if (charContrl.isGrounded) 
                 {
-                    rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    AddForce(Vector3.up, jumpForce);
                 }
 
             }
@@ -82,10 +132,16 @@ namespace CreatingCharacters.Player
         }
         */
 
-        protected bool IsGrounded()
+        /*protected bool IsGrounded()
         {
             //Debug.DrawRay(transform.position, Vector3.down * jumpraycastDistance, Color.blue);
             return (Physics.Raycast(transform.position, Vector3.down, jumpraycastDistance));
+        }*/
+        public void AddForce(Vector3 direc, float magn) 
+        {
+            currentImpact += direc.normalized * magn / mass;
         }
     }
+
+    
 }
