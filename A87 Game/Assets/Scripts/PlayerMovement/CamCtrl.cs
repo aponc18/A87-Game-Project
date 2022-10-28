@@ -21,7 +21,7 @@ public class CamCtrl : MonoBehaviour
     private void Update()
     {
         RotateCamera();
-        CheckForShooting();
+        //CheckForShooting();
     }
 
     private void RotateCamera()
@@ -40,19 +40,5 @@ public class CamCtrl : MonoBehaviour
         currentLookingPosition.y = Mathf.Clamp(currentLookingPosition.y, -80f, 80f);
     }
 
-    private void CheckForShooting() 
-    {
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            RaycastHit whatIHit;
-            if (Physics.Raycast(transform.position, transform.forward, out whatIHit, Mathf.Infinity)) 
-            {
-                IDamagable damagable = whatIHit.collider.GetComponent<IDamagable>();
-                if (damagable != null) 
-                {
-                    damagable.Damage(10);
-                }
-            }
-        }
-    }
+    
 }
