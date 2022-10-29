@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6d3cad4b38c68479098e39f6338458, type: 3}
   m_Name: AssultRifle
   m_EditorClassIdentifier: 
+  gunPrefab: {fileID: 1250547581135616682, guid: ef7abee46b24c224086708bd59ee4104, type: 3}
   gunName: AR
   minDamage: 15
   maxDamage: 50

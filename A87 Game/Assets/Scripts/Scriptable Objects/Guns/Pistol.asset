@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6d3cad4b38c68479098e39f6338458, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  gunPrefab: {fileID: 8393074439306182418, guid: e13f634d4265ce0438ddf76922070cd3, type: 3}
   gunName: Pistol
   minDamage: 5
   maxDamage: 40
