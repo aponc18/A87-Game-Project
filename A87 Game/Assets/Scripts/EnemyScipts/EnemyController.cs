@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 public class EnemyController : MonoBehaviour
 {
 
@@ -100,4 +99,6 @@ public class EnemyController : MonoBehaviour
         NavMesh.SamplePosition(randomPoint, out navHit, wanderRadius, -1);
         return new Vector3(navHit.position.x, transform.position.y, navHit.position.z);
     }
+
 }
+

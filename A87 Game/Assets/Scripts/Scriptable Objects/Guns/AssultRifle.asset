@@ -15,5 +15,5 @@ MonoBehaviour:
   gunPrefab: {fileID: 1250547581135616682, guid: ef7abee46b24c224086708bd59ee4104, type: 3}
   gunName: AR
   minDamage: 15
-  maxDamage: 50
-  maxRange: 60
+  maxDamage: 60
+  maxRange: 70
