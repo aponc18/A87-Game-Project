@@ -29,7 +29,7 @@ public class WeaponHandler : MonoBehaviour
                 if (damagable != null)
                 {
                     damagable.Damage(currentGun.maxDamage);
-                    
+                   
                 }
             }
         }
