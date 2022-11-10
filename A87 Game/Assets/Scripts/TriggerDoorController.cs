@@ -17,7 +17,7 @@ public class TriggerDoorController : MonoBehaviour
     private void OntriggerEnter() 
     {
         targets = GameObject.FindGameObjectsWithTag("Objective");
-        Debug.LogError(""+targets.Length);
+        //Debug.LogError(""+targets.Length);
 
         if (GameObject.FindGameObjectWithTag("Objective") == null)
         {
@@ -29,7 +29,7 @@ public class TriggerDoorController : MonoBehaviour
         else 
         {
             //do nothing
-            Debug.LogError("There are still Targets");
+            //Debug.LogError("There are still Targets");
         }
     }
 }
