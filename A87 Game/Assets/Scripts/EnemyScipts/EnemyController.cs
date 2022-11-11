@@ -43,7 +43,8 @@ public class EnemyController : MonoBehaviour
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget(); //face the target
-                              //attack the target
+                AttackTarget(); 
+
 
             }
 
@@ -98,6 +99,14 @@ public class EnemyController : MonoBehaviour
         NavMeshHit navHit;
         NavMesh.SamplePosition(randomPoint, out navHit, wanderRadius, -1);
         return new Vector3(navHit.position.x, transform.position.y, navHit.position.z);
+    }
+
+    public void AttackTarget()
+    {
+        if(agent.remainingDistance < 2f)
+        {
+            animator.SetTrigger("Attack");
+        }
     }
 
 }
