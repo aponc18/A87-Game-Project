@@ -44,16 +44,11 @@ public class WeaponHandler : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit whatIHit;
-            if (Physics.Raycast(cameraTransform.position, transform.forward, out whatIHit, Mathf.Infinity))
-            {
-                IDamagable damagable = whatIHit.collider.GetComponent<IDamagable>();
-                if (damagable != null)
-                {
-                    damagable.Damage(currentGun.maxDamage);
-                   
-                }
-            }
+            currentGun.OnLeftMouseDown(cameraTransform);
+        }
+        if (Input.GetMouseButton(0)) 
+        {
+            currentGun.OnLeftMouseHold(cameraTransform);
         }
     }
 }

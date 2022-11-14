@@ -6,6 +6,7 @@ public class CamCtrl : MonoBehaviour
 {
     [SerializeField] private float lookSens;
     [SerializeField] private float smoothing;
+    [SerializeField] private int maxLookRotation;
 
     private GameObject player;
     private Vector2 smoothVelocity;
@@ -35,6 +36,7 @@ public class CamCtrl : MonoBehaviour
 
         currentLookingPosition += smoothVelocity;
 
+        currentLookingPosition.y = Mathf.Clamp(currentLookingPosition.y, -maxLookRotation, maxLookRotation);
         transform.localRotation = Quaternion.AngleAxis(-currentLookingPosition.y, Vector3.right);
         player.transform.localRotation = Quaternion.AngleAxis(currentLookingPosition.x, player.transform.up);
         currentLookingPosition.y = Mathf.Clamp(currentLookingPosition.y, -80f, 80f);

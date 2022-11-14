@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6d3cad4b38c68479098e39f6338458, type: 3}
+  m_Script: {fileID: 11500000, guid: 7aa891ffab44b9742a567a5f61640817, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 596358404042752746, guid: 1a871187b46a25146950314c65b8850a, type: 3}
   gunName: Shotgun
   minDamage: 9
   maxDamage: 99
-  maxRange: 20
+  maxRange: 19
