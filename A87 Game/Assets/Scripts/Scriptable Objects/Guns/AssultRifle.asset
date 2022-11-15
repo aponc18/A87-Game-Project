@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb403a99c0572064a999b87797976eb7, type: 3}
   m_Name: AssultRifle
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 1250547581135616682, guid: ef7abee46b24c224086708bd59ee4104, type: 3}
+  gunPrefab: {fileID: 4599497437133094500, guid: ef7abee46b24c224086708bd59ee4104, type: 3}
+  muzzleFlash: {fileID: 227427950352528514, guid: 1a97868a5a8e9fe4a8d1ee9cc429929b, type: 3}
   gunName: AR
   maxAmmoCount: 0
   magSize: 0
@@ -20,3 +21,4 @@ MonoBehaviour:
   maxDamage: 50
   maxRange: 80
   fireRate: 6
+  part: {fileID: 0}

@@ -7,6 +7,7 @@ public class GunWeapon : ScriptableObject
 {
     
     public GameObject gunPrefab;
+    //public ParticleSystem muzzleFlash;
     
     //Menu
     [Header("Stats")]
@@ -20,16 +21,20 @@ public class GunWeapon : ScriptableObject
     
     //public int currentAmmoCount = maxAmmoCount;
 
-    public virtual void OnLeftMouseDown(Transform cameraPos) {    }
+    public virtual void OnLeftMouseDown(Transform cameraPos, ParticleSystem particles) {    }
 
-    public virtual void OnLeftMouseHold(Transform cameraPos) {    }
+    public virtual void OnLeftMouseHold(Transform cameraPos, ParticleSystem particles) {    }
 
-    protected void Fire(Transform cameraPos) 
+    protected void Fire(Transform cameraPos, ParticleSystem particles) 
     {
         RaycastHit whatIHit;
         //currentAmmoCount--;
+        //particles.Play();
+        //muzzleFlash.Play();
+        //Debug.print("Muzzleflash");
         if (Physics.Raycast(cameraPos.position, cameraPos.transform.forward, out whatIHit, Mathf.Infinity))
         {
+            //muzzleFlash.Play();
             IDamagable damageable = whatIHit.collider.GetComponent<IDamagable>();
             if (damageable != null)
             {
@@ -40,6 +45,13 @@ public class GunWeapon : ScriptableObject
                 }
 
             }
+            
         }
     }
+
+    /**protected void mFlash() 
+    {
+        muzzleFlash.Play();
+    }**/
+    
 }

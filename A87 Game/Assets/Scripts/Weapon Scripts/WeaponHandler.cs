@@ -5,6 +5,8 @@ using UnityEngine;
 public class WeaponHandler : MonoBehaviour
 {
     [SerializeField] private List<GunWeapon> guns = new List<GunWeapon>();
+    //[SerializeField] private GameObject particles;
+    [SerializeField] public ParticleSystem particles;
 
     private GunWeapon currentGun;
     private Transform cameraTransform;
@@ -44,11 +46,15 @@ public class WeaponHandler : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            currentGun.OnLeftMouseDown(cameraTransform);
+            currentGun.OnLeftMouseDown(cameraTransform, particles);
+            particles.Stop();
+            particles.Play();
         }
         if (Input.GetMouseButton(0)) 
         {
-            currentGun.OnLeftMouseHold(cameraTransform);
+            currentGun.OnLeftMouseHold(cameraTransform, particles);
+            particles.Stop();
+            particles.Play();
         }
     }
 }

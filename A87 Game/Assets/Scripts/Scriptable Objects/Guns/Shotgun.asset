@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 596358404042752746, guid: 1a871187b46a25146950314c65b8850a, type: 3}
+  muzzleFlash: {fileID: 227427950352528514, guid: 1a97868a5a8e9fe4a8d1ee9cc429929b, type: 3}
   gunName: Shotgun
+  maxAmmoCount: 0
+  magSize: 0
   minDamage: 9
   maxDamage: 99
   maxRange: 19
+  part: {fileID: 0}
