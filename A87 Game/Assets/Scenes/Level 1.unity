@@ -91246,7 +91246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  jumpForce: 16
+  jumpForce: 20
   mass: 1
   damping: 5
   jumpraycastDistance: 1
