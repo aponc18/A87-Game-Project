@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TargetCapsule
   m_EditorClassIdentifier: 
   enemyName: Objective
-  maxHealth: 700
+  maxHealth: 800
