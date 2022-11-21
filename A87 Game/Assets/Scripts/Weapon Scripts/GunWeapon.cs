@@ -45,7 +45,12 @@ public class GunWeapon : ScriptableObject
                 }
 
             }
-            
+            var hitBox = whatIHit.collider.GetComponent<Hitbox>(); //testing for hitbox
+            if (hitBox)
+            {
+                hitBox.OnRaycastHit(this);
+            }
+
         }
     }
 

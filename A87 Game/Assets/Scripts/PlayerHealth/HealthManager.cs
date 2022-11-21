@@ -10,6 +10,7 @@ public class HealthManager : MonoBehaviour
     public float regenRate = 4f;
 
     public HealthBar healthBar;
+    public static bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +42,8 @@ public class HealthManager : MonoBehaviour
     {
         if (currentHealth <= 0f)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
+            dead = true;
         }
     }
 

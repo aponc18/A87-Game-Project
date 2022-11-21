@@ -13,9 +13,11 @@ public class EnemyController : MonoBehaviour
     public float chaseSpeed = 7f;
 
 
-    private bool isAware = false;
+    
     private Vector3 wanderPoint;
-    private Animator animator;
+    private Animator animator = null;
+
+
 
 
     Transform target;
@@ -23,11 +25,12 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
         animator = GetComponentInChildren<Animator>();
-        
+
 
     }
 
@@ -43,9 +46,7 @@ public class EnemyController : MonoBehaviour
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget(); //face the target
-                AttackTarget(); 
-
-
+                AttackTarget();
             }
 
         }
@@ -72,7 +73,10 @@ public class EnemyController : MonoBehaviour
     }
     public void Wander()
     {
+        //enemyIdle.Play();
+        //audioSource.PlayOneShot(zombie_idle);
         animator.SetBool("Aware", false);
+        animator.SetBool("Chasing", false);
         agent.speed = wanderSpeed;
 
         if (Vector3.Distance(transform.position, wanderPoint) < 2f)
@@ -87,10 +91,10 @@ public class EnemyController : MonoBehaviour
 
     public void OnAware()
     {
-        isAware = true;
         animator.SetBool("Aware", true);
+        animator.SetBool("Chasing", true);
         agent.speed = chaseSpeed;
-       
+
     }
 
     public Vector3 RandomWanderPoint()
@@ -103,9 +107,12 @@ public class EnemyController : MonoBehaviour
 
     public void AttackTarget()
     {
-        if(agent.remainingDistance < 2f)
+        if (agent.remainingDistance < 3f)
         {
+            //enemyAttack.Play();
+            //audioSource.PlayOneShot(attackSound);
             animator.SetTrigger("Attack");
+            //DealDamage(15);
         }
     }
 
