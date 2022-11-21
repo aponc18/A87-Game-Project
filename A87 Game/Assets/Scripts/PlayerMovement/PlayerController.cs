@@ -41,9 +41,12 @@ namespace CreatingCharacters.Player
 
         protected virtual void Update()
         {
-            Move();
-            Jump();
-            //Sprint();
+            if (!PauseMenu.isPaused)
+            {
+                Move();
+                Jump();
+                //Sprint();
+            }
         }
 
         /*protected virtual void FixedUpdate()
