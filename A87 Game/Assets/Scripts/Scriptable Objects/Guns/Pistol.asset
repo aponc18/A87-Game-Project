@@ -19,4 +19,4 @@ MonoBehaviour:
   minDamage: 4
   maxDamage: 40
   maxRange: 40
-  part: {fileID: 0}
+  part: {fileID: 8393074439306182418, guid: e13f634d4265ce0438ddf76922070cd3, type: 3}
