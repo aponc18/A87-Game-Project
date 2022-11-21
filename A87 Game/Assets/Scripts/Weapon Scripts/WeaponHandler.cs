@@ -7,6 +7,10 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private List<GunWeapon> guns = new List<GunWeapon>();
     //[SerializeField] private GameObject particles;
     [SerializeField] public ParticleSystem particles;
+    [SerializeField] public AudioSource arSound;
+    [SerializeField] public AudioSource shotSound;
+    [SerializeField] public AudioSource pistolSound;
+
 
     private GunWeapon currentGun;
     private Transform cameraTransform;
@@ -44,17 +48,38 @@ public class WeaponHandler : MonoBehaviour
 
     private void CheckForShooting()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (currentGun == guns[2])
         {
-            currentGun.OnLeftMouseDown(cameraTransform, particles);
-            particles.Stop();
-            particles.Play();
+            if (Input.GetMouseButtonDown(0))
+            {
+                currentGun.OnLeftMouseDown(cameraTransform, particles);
+                particles.Stop();
+                particles.Play();
+                shotSound.Stop();
+                shotSound.Play();
+            }
         }
-        if (Input.GetMouseButton(0)) 
+        if (currentGun == guns[0])
         {
-            currentGun.OnLeftMouseHold(cameraTransform, particles);
-            particles.Stop();
-            particles.Play();
+            if (Input.GetMouseButtonDown(0))
+            {
+                currentGun.OnLeftMouseDown(cameraTransform, particles);
+                particles.Stop();
+                particles.Play();
+                pistolSound.Stop();
+                pistolSound.Play();
+            }
+        }
+        if (currentGun == guns[1])
+        {
+            if (Input.GetMouseButton(0))
+            {
+                currentGun.OnLeftMouseHold(cameraTransform, particles);
+                particles.Stop();
+                particles.Play();
+                arSound.Stop();
+                arSound.Play();
+            }
         }
     }
 }
