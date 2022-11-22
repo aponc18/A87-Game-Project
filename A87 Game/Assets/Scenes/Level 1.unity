@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16900843, g: 0.23224944, b: 0.2603875, a: 1}
+  m_IndirectSpecularColor: {r: 0.16900852, g: 0.23224947, b: 0.26038763, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -887,7 +887,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1322914778}
         m_TargetAssemblyTypeName: RespawnMenu, Assembly-CSharp
-        m_MethodName: RespawnGame
+        m_MethodName: GoRespawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

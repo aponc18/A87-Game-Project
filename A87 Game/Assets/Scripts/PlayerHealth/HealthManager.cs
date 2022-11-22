@@ -32,7 +32,7 @@ public class HealthManager : MonoBehaviour
         RegenHealth();
     }
 
-    void TakeDamage(float damage) 
+    public void TakeDamage(float damage) 
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
@@ -56,6 +56,5 @@ public class HealthManager : MonoBehaviour
         }
         healthBar.SetHealth(currentHealth);
     }
-
    
 }

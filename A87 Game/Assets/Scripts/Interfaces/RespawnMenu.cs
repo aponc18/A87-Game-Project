@@ -10,6 +10,8 @@ public class RespawnMenu : MonoBehaviour
 
     [SerializeField] public GameObject respawnMenu;
     public static bool isDead;
+    public HealthManager HealthManager;
+    public static bool isRespawning;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,8 @@ public class RespawnMenu : MonoBehaviour
 
     public void RespawnGame()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         respawnMenu.SetActive(true);
         Time.timeScale = 0f;
         
@@ -38,22 +42,22 @@ public class RespawnMenu : MonoBehaviour
     public void GoRespawn()
     {
         Time.timeScale = 1f;
-        Application.LoadLevel(Application.loadedLevel);
+        respawnMenu.SetActive(false);
         isDead = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GoMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
+        respawnMenu.SetActive(false);
         isDead = false;
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
-
-
 
 }
