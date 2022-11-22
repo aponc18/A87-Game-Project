@@ -21,7 +21,7 @@ public class CamCtrl : MonoBehaviour
 
     private void Update()
     {
-        if (!PauseMenu.isPaused && !HealthManager.dead)
+        if (!PauseMenu.isPaused || !RespawnMenu.isDead)
         {
             RotateCamera();
             //CheckForShooting();

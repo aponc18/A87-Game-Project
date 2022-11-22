@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] public float maxHealth;
-    public float currentHealth;
+    public  float currentHealth;
     public float regenRate = 4f;
 
     public HealthBar healthBar;
@@ -17,6 +17,7 @@ public class HealthManager : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        ResetHealth();
     }
 
     // Update is called once per frame
@@ -55,6 +56,12 @@ public class HealthManager : MonoBehaviour
             currentHealth = maxHealth;
         }
         healthBar.SetHealth(currentHealth);
+    }
+
+    public void ResetHealth() 
+    {
+        currentHealth = maxHealth;
+        dead = false;
     }
    
 }

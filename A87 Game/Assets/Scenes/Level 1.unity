@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16900852, g: 0.23224947, b: 0.26038763, a: 1}
+  m_IndirectSpecularColor: {r: 0.1690087, g: 0.2322498, b: 0.2603878, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6732,6 +6732,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1319897237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1764322034961966594, guid: f6477603bc950f847a31d524444fd9f1, type: 3}
+  m_PrefabInstance: {fileID: 2677267588810845558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d324444dae6636945b345635fa8c27f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1322914777
 GameObject:
   m_ObjectHideFlags: 0
@@ -6769,6 +6780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnMenu: {fileID: 2089804934}
+  HealthManager: {fileID: 1319897237}
 --- !u!114 &1322914779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10663,12 +10675,12 @@ GameObject:
   - component: {fileID: 2089804936}
   - component: {fileID: 2089804935}
   m_Layer: 5
-  m_Name: RespawnMenu
+  m_Name: ' RespawnMenu'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2089804935
 MonoBehaviour:
   m_ObjectHideFlags: 0

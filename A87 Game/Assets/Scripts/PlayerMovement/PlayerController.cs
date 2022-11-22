@@ -41,7 +41,7 @@ namespace CreatingCharacters.Player
 
         protected virtual void Update()
         {
-            if (!PauseMenu.isPaused)
+            if (!PauseMenu.isPaused || RespawnMenu.isDead)
             {
                 Move();
                 Jump();

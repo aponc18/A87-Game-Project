@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class RespawnMenu : MonoBehaviour
 {
-
-
+    //[SerializeField] public HealthManager healthBar;
     [SerializeField] public GameObject respawnMenu;
     public static bool isDead;
     public HealthManager HealthManager;
@@ -45,6 +44,8 @@ public class RespawnMenu : MonoBehaviour
         respawnMenu.SetActive(false);
         isDead = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Application.LoadLevel(Application.loadedLevel);
+        //healthBar.ResetHealth();
     }
 
     public void GoMainMenu()
