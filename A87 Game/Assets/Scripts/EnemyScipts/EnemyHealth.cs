@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
         currentHealth = maxHealth;
         //  currentHealth = enemyStats.maxHealth;
-        SetHealthbarUI();
+        //SetHealthbarUI();
 
 
         var rigidBodies = GetComponentsInChildren<Rigidbody>(); //used to apply damage of all hitboxes to overall health
@@ -55,7 +55,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     {
         currentHealth -= damage;
         CheckIfDead();
-        SetHealthbarUI();
+        //SetHealthbarUI();
     }
 
     /** public void Regen() 
@@ -92,12 +92,12 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         }
     }
 
-    private void SetHealthbarUI()
+    /**private void SetHealthbarUI()
     {
         float healthPer = CalculateHealthPerc();
         healthBar.value = healthPer;
         healthBarImage.color = Color.Lerp(minHealthColor, maxHealthColor, healthPer / 100);
-    }
+    }**/
 
     private float CalculateHealthPerc()
     {

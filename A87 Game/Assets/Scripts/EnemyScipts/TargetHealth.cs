@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TargetHealth : MonoBehaviour, IDamagable
 {
     [SerializeField] private TargetStats targetStats;
-    [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider HealthBar;
     [SerializeField] private Image healthBarImage;
     [SerializeField] private Color maxHealthColor;
     [SerializeField] private Color minHealthColor;
@@ -16,6 +16,12 @@ public class TargetHealth : MonoBehaviour, IDamagable
     private void Start()
     {
         currentHealth = targetStats.maxHealth;
+        SetHealthbarUI();
+    }
+
+    private void Update()
+    {
+        //RegainHealth();
         SetHealthbarUI();
     }
 
@@ -37,7 +43,8 @@ public class TargetHealth : MonoBehaviour, IDamagable
     private void SetHealthbarUI()
     {
         float healthPer = CalculateHealthPerc();
-        healthBar.value = healthPer;
+        HealthBar.value = healthPer;
+        //healthBar.SetValueWithoutNotify(healthPer);
         healthBarImage.color = Color.Lerp(minHealthColor, maxHealthColor, healthPer / 100);
     }
 
