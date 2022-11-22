@@ -24,7 +24,11 @@ public class RespawnMenu : MonoBehaviour
         isDead = HealthManager.dead;
         if(isDead)
         {
+            Time.timeScale = 0f;
             RespawnGame();
+        }
+        else{
+            Time.timeScale = 1f;
         }
         
     }
@@ -34,16 +38,16 @@ public class RespawnMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         respawnMenu.SetActive(true);
-        Time.timeScale = 0f;
         
     }
 
     public void GoRespawn()
     {
-        Time.timeScale = 1f;
         respawnMenu.SetActive(false);
         isDead = false;
+        Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
         //Application.LoadLevel(Application.loadedLevel);
         //healthBar.ResetHealth();
     }
